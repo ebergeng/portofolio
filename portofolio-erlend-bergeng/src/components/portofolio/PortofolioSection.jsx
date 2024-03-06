@@ -1,12 +1,9 @@
 import styled from 'styled-components';
-
 import CarouselModal from '../modal/CaruselModal';
 import { useState } from 'react';
-import { projectExamImages } from '../../assets/project-exam/projectExamImg.js';
-import { jsFrameworkImages } from '../../assets/js-frameworks/jsFrameworkImg.js';
-import { semesterProjectImages } from '../../assets/semester-project/semesterProjectImg.js';
-
-
+import { peOneImage } from '../../assets/project-exam-first/peOneImg.js';
+import { htmlCssImages } from '../../assets/html_css/htmlCssImg.js';
+import { spOneImages } from '../../assets/semester-project-first/spOneImg.js';
 
 
 const Container = styled.div`
@@ -16,16 +13,25 @@ const Container = styled.div`
 
 const PortofolioContainer = styled.section`
   // your styles here
+  width: 80%;
   display: flex;
   box-shadow: 0px 3px 6px #0000001c;
-  padding: 10px;
+  padding: 0 50px 25px 0;
   background-color: #DFDFDF;
+  border-radius: 0 50px 0 0;
+  transform: ${({ isVisible }) => isVisible ? 'translateX(0)' : 'translateX(-65%)'};
+  transition: transform 0.5s ease-out;
+  z-index: -99;
+  h2 {
+    text-align: end;
+  }
 `;
 
 
 const Image = styled.img`
     width: 300px;
     height: 100%;
+    max-height: 180px;
     cursor: pointer;
 `
 
@@ -46,36 +52,61 @@ const Wrapper = styled.div`
 
 const Section = styled.div`
     width: 100%; 
-
+    
     
     display: flex;
     flex-direction: row;
+
     gap: 25px;
 
 
 `
 const SectionContainerOne = styled(Section)`
     justify-content: start;
+    
 
 `
 
 
 const SectionOne = styled.div`
+    border-radius: 0px 50px 0 0;
+    padding: 10px;
     width: 100%;
     background-color: white;
     box-shadow: 0px 3px 6px #0000001c;
     display: flex;
+    justify-content: center;
+    align-items: center;
     div{
         text-align: center;
         padding: 10px;
     }
+    @media (max-width: 800px) {
+    flex-direction: column;
+    padding-top: 35px;
+    overflow: hidden;
+  }
 
+`
+
+const SectionTwo = styled(SectionOne)`
+    border-radius: 0;
+`
+
+const SectionThree = styled(SectionOne)`
+    border-radius: 0 0 50px 0;
+`
+
+const Links = styled.div`
+    width: 100%;
+    display: flex;
+    gap: 25px;
+    justify-content: center;
 `
 
 
 
-
-const PortofolioSection = () => {
+const PortofolioSection = ({isVisible}) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [lib, setLib] = useState([])
@@ -86,12 +117,12 @@ const PortofolioSection = () => {
 
     function handleOpen(type) {
         if(type === "exam") {
-            setLib(projectExamImages)
+            setLib(peOneImage)
             
         }else if(type === "framWork") {
-            setLib(jsFrameworkImages)
+            setLib(spOneImages)
         }else if(type === "semester") {
-            setLib(semesterProjectImages)
+            setLib(htmlCssImages)
         }
 
 
@@ -101,45 +132,58 @@ const PortofolioSection = () => {
 
   return (
     <Container>
-        <PortofolioContainer>
+        <PortofolioContainer isVisible={isVisible}>
         <TextSection>
-            <h2>Portofolio</h2>
+            <h2>Portofolio First Year</h2>
             <Wrapper>
                 <SectionContainerOne>
                 <SectionOne>
-                    <Image src={semesterProjectImages[0]} onClick={() => handleOpen("semester")}/>
+                    <Image src={htmlCssImages[0]} onClick={() => handleOpen("semester")}/>
                     <div>
-                        <h3>Semester Project 2 - Auction House</h3>
+                        <h3>HTML & CSS Ca</h3>
                             <p>
-                            This project is an auction house platform that allows users to bid on items, view bid history, and manage their personal profiles. The frontend is styled using Bootstrap and SCSS, while the backend logic is handled with vanilla JavaScript.
-                            </p>                  
-                    </div>
-              
-                </SectionOne>
-                </SectionContainerOne>
-
-                <SectionContainerOne>
-                <SectionOne>
-                    <Image src={jsFrameworkImages[0]} onClick={() => handleOpen("framWork")}/>
-                    <div>
-                        <h3>JavaScript Frameworks Course Assignment</h3>
-                            <p>
-                            This project is a React-based e-commerce store that allows users to browse products, add them to their cart, and checkout. The application uses React Router for routing and Zustand for state management. The styling is accomplished with styled-components, providing a responsive and modern user interface.
+                                My first webpage built with only html, css and js.
                             </p>
+                            <Links>
+                            <p>Link to: <a href="https://github.com/ebergeng/RainyDays">GitHub Repo</a></p>
+                            <p>Link to: <a href="https://velvety-blini-002fa1.netlify.app/contact">Site</a></p>
+                            </Links>              
                     </div>
               
                 </SectionOne>
                 </SectionContainerOne>
 
                 <SectionContainerOne>
-                <SectionOne>
-                    <Image src={projectExamImages[0]} onClick={() => handleOpen("exam")}/>
+                <SectionTwo>
+                    <Image src={spOneImages[0]} onClick={() => handleOpen("framWork")}/>
                     <div>
-                        <h3>Project Exam</h3>
-                         <p>This is my project Exam and it is a React-based web application designed to showcase a modern, scalable, and responsive UI/UX design. Utilizing a comprehensive stack including React 18, Styled Components, React Hook Form, Zustand for state management, and Vite as the build tool, this project aims to deliver a seamless and efficient user experience.</p>
+                        <h3>Semester Project - 1</h3>
+                            <p>
+                            The page had to cater to a very broad target audience, so I have tried to make the page simple and playful for everyone, from young teenagers to the elderly.
+                            This page is build with only HTML and CSS
+                            </p>
+                            <Links>
+                            <p>Link to: <a href="https://github.com/ebergeng/semester_project_v2">GitHub Repo</a></p>
+                            <p>Link to: <a href="https://resplendent-semifreddo-f584b3.netlify.app/">Site</a></p>
+                            </Links>       
                     </div>
               
-                </SectionOne>
+                </SectionTwo>
+                </SectionContainerOne>
+
+                <SectionContainerOne>
+                <SectionThree>
+                    <Image src={peOneImage[0]} onClick={() => handleOpen("exam")}/>
+                    <div>
+                        <h3>Project Exam - 1</h3>
+                         <p>A blogpage built with HTML, CSS, JS and uses wordpress as a headless CMS. It uses a wordpress api call to catch posts from a wordpress DB. All the posts in this sites are createt and stored on a wordpress page.</p>
+                         <Links>
+                            <p>Link to: <a href="https://github.com/Noroff-FEU-Assignments/project-exam-1-ebergeng">GitHub Repo</a></p>
+                            <p>Link to: <a href="https://poetic-dragon-ccb4f9.netlify.app/">Site</a></p>
+                        </Links>       
+                    </div>
+              
+                </SectionThree>
                 </SectionContainerOne>
             
             </Wrapper>

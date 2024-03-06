@@ -17,43 +17,54 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: end;
+  h3 {
+    text-align: start;
+  }
 
 `
 
 const SkillsContainer = styled.section`
   // your styles here
-  width: 90%;
+  width: max-content;
+  max-width: 80%;
   display: flex;
   box-shadow: 0px 3px 6px #0000001c;
-  padding: 10px;
+  padding: 0px 0 10px 35px;
   background-color: #DFDFDF;
-
+  border-radius: 0 0 0 50px;
+  transform: ${({ isVisible }) => isVisible ? 'translateX(0)' : 'translateX(65%)'};
+  transition: transform 0.5s ease-out;
 `;
 
 
 const Image = styled.img`
-    width: 100%;
-    height: 65px;
-    max-width: 65px;
+    height: 35px;
+    max-width: 50px;
 `
 
 
 const TextSection = styled.div`
 padding: 5px;
+width: auto;
+text-align: center;
+width: 100%;
+
 div {
     display: flex;
-    gap: 25px;
-    flex-wrap: wrap;
+    gap: 15px;
+    flex-wrap: wrap-reverse;
+   margin: auto;
+   justify-content: center;
 }
 
 `
 
-const SkillsSection = () => {
+const SkillsSection = ({ isVisible }) => {
   return (
     <Container>
-            <SkillsContainer>
+            <SkillsContainer isVisible={isVisible}>
       <TextSection>
-        <h2></h2>
+        <h3>Skillset</h3>
         <div>
         <Image  src={jsPng} alt='javascript'/>
         <Image  src={htmlPng} alt='html'/>

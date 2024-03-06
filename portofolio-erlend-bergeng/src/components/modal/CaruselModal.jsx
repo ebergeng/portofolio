@@ -35,12 +35,12 @@ const NavigationButton = styled.button`
   top: 50%;
   transform: translateY(-50%);
   background-color: #d1d1d1ae;
-  border-radius: 100%;
+  width: 50px;
+  height: 100%;
   border: none;
   font-size: 34px;
   z-index: 10;
   margin: 0;
-  padding: 5px;
   cursor: pointer;
 
   &:hover {
@@ -49,11 +49,11 @@ const NavigationButton = styled.button`
   }
 
   ${props => props.direction === 'prev' && `
-    left: 25px;
+    left: 0px;
   `}
 
   ${props => props.direction === 'next' && `
-    right: 25px;
+    right: 0px;
   `}
 `;
 

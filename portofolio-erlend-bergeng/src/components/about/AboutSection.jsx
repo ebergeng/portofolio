@@ -8,15 +8,15 @@ const Container = styled.div`
   justify-content: start;
 
 `
-
 const AboutContainer = styled.section`
-  // your styles here
   width: 90%;
   display: flex;
   box-shadow: 0px 3px 6px #0000001c;
   padding: 10px;
   background-color: #DFDFDF;
-
+  border-radius: 0 50px 0 0;
+  transform: ${({ isVisible }) => isVisible ? 'translateX(0)' : 'translateX(-50%)'};
+  transition: transform 0.5s ease-out;
 `;
 
 const ImageContainer = styled.img`
@@ -29,14 +29,16 @@ padding: 5px;
 
 `
 
-const AboutSection = () => {
+const AboutSection = ({ isVisible }) => {
   return (
     <Container>
-          <AboutContainer>
+          <AboutContainer isVisible={isVisible}>
       <ImageContainer src={imageSrc} alt='progile-img'/>
       <TextSection>
-        <h2>About Me</h2>
-        <p>I am currently a front-end student at Noroff School of Technology and Digital Media while also holding a 40% position as a teacher in concept development and programming at a high school.</p>
+        <h2>Hello there!</h2><p>My name is Erlend and im a 35 year old Front-end devoloper </p>
+        <p>
+        I'm a front-end student at Noroff School of Technology and Digital Media, set to graduate in Spring 2024. I hold a part-time position as IT manager and teacher in concept development and programming at KVN High School.
+        </p>
       </TextSection>
     </AboutContainer>
       
